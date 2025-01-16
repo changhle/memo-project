@@ -1,0 +1,19 @@
+.SideBarFooter {
+  text-align: center;
+  padding: 15px 0;
+}
+
+.SideBarFooter .AddButton {
+  background: none;
+  border-radius: 100%;
+  border: 2px solid #555;
+  color: #555;
+  width: 35px;
+  height: 35px;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  font-size: 1.3rem;
+  opacity: 0.6;
+  cursor: pointer;
+}
