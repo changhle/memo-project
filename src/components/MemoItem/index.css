@@ -1,31 +1,35 @@
 .MemoItem {
-  /* width: 0%; */
-  /* padding-right: 25px; */
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  padding: 5px 20px 5px 8px;
-  /* box-sizing: border-box; */
-  position: relative;
-}
-.MemoItem:hover {
-  background: rgba(100, 100, 100, 0.1);
-}
-
-.MemoItem.selected {
-  background: rgba(100, 100, 100, 0.3);
-  font-weight: 500;
-}
-
-.MemoItem .DeleteButton {
-  background: none;
-  border: none;
-  position: absolute;
-  color: #555;
-  right: 3px;
-  top: 6px;
-  display: none;
-}
-.MemoItem:hover .DeleteButton {
-  display: inline-block;
-}
+	/* width: 0%; */
+	/* padding-right: 25px; */
+	height: 30px;
+	white-space: nowrap;
+	line-height: 30px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	padding: 5px 20px 5px 8px;
+	/* box-sizing: border-box; */
+	position: relative;
+  }
+  .MemoItem:hover {
+	background: rgba(100, 100, 100, 0.1);
+  }
+  
+  .MemoItem.selected {
+	background: rgba(100, 100, 100, 0.3);
+	font-weight: 500;
+  }
+  
+  .MemoItem .DeleteButton {
+	background: none;
+	border: none;
+	position: absolute;
+	color: #555;
+	line-height: 30px;
+	right: 6px;
+	top: 6px;
+	display: none;
+  }
+  .MemoItem:hover .DeleteButton {
+	display: inline-block;
+  }
+  

@@ -2,22 +2,14 @@ import { useState } from "react";
 import "./App.css";
 import MemoContainer from "./components/MemoContainer";
 import SideBar from "./components/SideBar";
+import { getItem, setItem } from './lib/storage';
+// import debounce from 'lodash.debounce';
+import _ from 'lodash';
+
+const debouncedSetItem = _.debounce(setItem, 5000);
 
 function App() {
-  const [memos, setMemos] = useState([
-    {
-      title: "Memo 1",
-      content: "This is memo 1",
-      createdAt: 1736757559195,
-      updatedAt: 1736757559195,
-    },
-    {
-      title: "Memo 2",
-      content: "This is memo 2",
-      createdAt: 1736757559195,
-      updatedAt: 1736757559195,
-    },
-  ]);
+  const [memos, setMemos] = useState(getItem("memo") || []);
 
   const [selectedMemoIndex, setSelectedMemoIndex] = useState(0);
 
@@ -25,30 +17,34 @@ function App() {
     const newMemos = [...memos];
     newMemos[selectedMemoIndex] = newMemo;
     setMemos(newMemos);
-  };
+	debouncedSetItem("memo", newMemos);
+};
 
-  const addMemo = () => {
-    const now = new Date().getTime();
-    setMemos([
-      ...memos,
-      {
-        title: "Untitled",
-        content: "",
-        createdAt: now,
-        updatedAt: now,
-      },
-    ]);
+const addMemo = () => {
+	const now = new Date().getTime();
+	const newMemos = [
+		...memos,
+		{
+			title: "Untitled",
+			content: "",
+			createdAt: now,
+			updatedAt: now,
+		},
+    ];
+    setMemos(newMemos);
     setSelectedMemoIndex(memos.length);
-  };
+	debouncedSetItem("memo", newMemos);
+};
 
-  const deleteMemo = (index) => {
-    const newMemos = [...memos];
-
+const deleteMemo = (index) => {
+	const newMemos = [...memos];
+	
     newMemos.splice(index, 1);
     setMemos(newMemos);
     if (selectedMemoIndex && selectedMemoIndex === newMemos.length) {
-      setSelectedMemoIndex(selectedMemoIndex - 1);
+		setSelectedMemoIndex(selectedMemoIndex - 1);
     }
+	debouncedSetItem("memo", newMemos);
   };
 
   return (
